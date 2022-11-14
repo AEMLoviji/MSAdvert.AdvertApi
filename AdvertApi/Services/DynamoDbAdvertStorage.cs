@@ -24,6 +24,7 @@ public class DynamoDbAdvertStorage : IAdvertStorageService
 
         using var client = new AmazonDynamoDBClient();
         using var context = new DynamoDBContext(client);
+
         await context.SaveAsync(dbModel);
 
         return dbModel.Id;
@@ -49,5 +50,14 @@ public class DynamoDbAdvertStorage : IAdvertStorageService
         {
             await context.DeleteAsync(record);
         }
+    }
+
+    public async Task<bool> CheckHealthAsync()
+    {
+        using var client = new AmazonDynamoDBClient();
+
+        var tableData = await client.DescribeTableAsync("Adverts");
+
+        return tableData.Table.TableStatus == TableStatus.ACTIVE;
     }
 }

@@ -1,5 +1,5 @@
+using AdvertApi.HealthChecks;
 using AdvertApi.Services;
-using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +12,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddTransient<IAdvertStorageService, DynamoDbAdvertStorage>();
 
+builder.Services.AddHealthChecks()
+    .AddCheck<StorageHealthCheck>("Storage", timeout: new TimeSpan(0, 1, 0));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -20,6 +23,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseHealthChecks("/health");
 
 app.UseAuthorization();
 
