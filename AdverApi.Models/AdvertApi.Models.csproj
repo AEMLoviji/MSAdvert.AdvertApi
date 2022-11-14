@@ -4,6 +4,13 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Authors>Elvin A.</Authors>
+    <Company>None</Company>
+    <Product>Web Advert Microservices</Product>
+    <PackageProjectUrl>https://github.com/AEMLoviji/WebAdvert.AdvertApi</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/AEMLoviji/WebAdvert.AdvertApi</RepositoryUrl>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>$(AssemblyName).EA</PackageId>
   </PropertyGroup>
 
 </Project>
