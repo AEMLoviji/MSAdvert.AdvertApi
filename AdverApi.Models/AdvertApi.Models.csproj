@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <Authors>Elvin A.</Authors>
     <Company>None</Company>
-    <Product>Web Advert Microservices</Product>
+    <Product>MS Web Advert</Product>
     <PackageProjectUrl>https://github.com/AEMLoviji/WebAdvert.AdvertApi</PackageProjectUrl>
     <RepositoryUrl>https://github.com/AEMLoviji/WebAdvert.AdvertApi</RepositoryUrl>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
