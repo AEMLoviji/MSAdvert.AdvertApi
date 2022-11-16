@@ -6,11 +6,11 @@ namespace AdvertApi.Controllers
 {
     [ApiController]
     [Route("api/v1/adverts")]
-    public class Advert : ControllerBase
+    public class AdvertsController : ControllerBase
     {
         private readonly IAdvertStorageService _advertStorageService;
 
-        public Advert(IAdvertStorageService advertStorageService)
+        public AdvertsController(IAdvertStorageService advertStorageService)
         {
             _advertStorageService = advertStorageService;
         }
@@ -19,7 +19,7 @@ namespace AdvertApi.Controllers
         [Route("Create")]
         [ProducesResponseType(404)]
         [ProducesResponseType(201, Type = typeof(CreateAdvertResponse))]
-        public async Task<IActionResult> Create(AdvertModel model)
+        public async Task<IActionResult> Create(CreateAdvertRequest model)
         {
             string recordId;
             try
@@ -39,7 +39,7 @@ namespace AdvertApi.Controllers
         [Route("Confirm")]
         [ProducesResponseType(404)]
         [ProducesResponseType(200)]
-        public async Task<IActionResult> Confirm(ConfirmAdvertModel model)
+        public async Task<IActionResult> Confirm(ConfirmAdvertRequest model)
         {
             try
             {

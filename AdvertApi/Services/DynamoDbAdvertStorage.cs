@@ -14,7 +14,7 @@ public class DynamoDbAdvertStorage : IAdvertStorageService
         _mapper = mapper;
     }
 
-    public async Task<string> Add(AdvertModel model)
+    public async Task<string> Add(CreateAdvertRequest model)
     {
         var dbModel = _mapper.Map<AdvertDbModel>(model);
 
@@ -30,7 +30,7 @@ public class DynamoDbAdvertStorage : IAdvertStorageService
         return dbModel.Id;
     }
 
-    public async Task Confirm(ConfirmAdvertModel model)
+    public async Task Confirm(ConfirmAdvertRequest model)
     {
         using var client = new AmazonDynamoDBClient();
         using var context = new DynamoDBContext(client);

@@ -11,6 +11,7 @@
     <RepositoryUrl>https://github.com/AEMLoviji/WebAdvert.AdvertApi</RepositoryUrl>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>$(AssemblyName).EA</PackageId>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
 </Project>
