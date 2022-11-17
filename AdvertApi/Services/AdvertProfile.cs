@@ -7,6 +7,6 @@ public class AdvertProfile : Profile
 {
     public AdvertProfile()
     {
-        CreateMap<CreateAdvertRequest, AdvertDbModel>();
+        CreateMap<CreateAdvertRequest, AdvertDbModel>().ReverseMap();
     }
 }

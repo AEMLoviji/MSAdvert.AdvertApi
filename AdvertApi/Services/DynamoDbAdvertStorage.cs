@@ -14,11 +14,11 @@ public class DynamoDbAdvertStorage : IAdvertStorageService
         _mapper = mapper;
     }
 
-    public async Task<string> Add(CreateAdvertRequest model)
+    public async Task<string> AddAsync(CreateAdvertRequest model)
     {
         var dbModel = _mapper.Map<AdvertDbModel>(model);
 
-        dbModel.Id = new Guid().ToString();
+        dbModel.Id = Guid.NewGuid().ToString();
         dbModel.CreationDateTime = DateTime.UtcNow;
         dbModel.Status = AdvertStatus.Pending;
 
@@ -30,7 +30,7 @@ public class DynamoDbAdvertStorage : IAdvertStorageService
         return dbModel.Id;
     }
 
-    public async Task Confirm(ConfirmAdvertRequest model)
+    public async Task ConfirmAsync(ConfirmAdvertRequest model)
     {
         using var client = new AmazonDynamoDBClient();
         using var context = new DynamoDBContext(client);
@@ -59,5 +59,15 @@ public class DynamoDbAdvertStorage : IAdvertStorageService
         var tableData = await client.DescribeTableAsync("Adverts");
 
         return tableData.Table.TableStatus == TableStatus.ACTIVE;
+    }
+
+    public async Task<AdvertDbModel> GetByIdAsync(string id)
+    {
+        using var client = new AmazonDynamoDBClient();
+        using var context = new DynamoDBContext(client);
+
+        var dbItem = await context.LoadAsync<AdvertDbModel>(id);
+
+        return dbItem ?? throw new KeyNotFoundException();
     }
 }
